@@ -19,6 +19,8 @@ namespace Spine.Exporters
 
         public override void Export(string output, CancellationToken ct, params SpineObject[] spines)
         {
+            _renderTexture = GetRenderTexture();
+
             Directory.CreateDirectory(output);
 
             int frameCount = GetFrameCount();
@@ -56,6 +58,9 @@ namespace Spine.Exporters
                 }
                 frameIdx++;
             }
+
+            _renderTexture.Dispose();
+            _renderTexture = null;
         }
     }
 }
